@@ -119,6 +119,9 @@ This software is distributed without any warranty.
 
 Publish large files to nostr as chunks and reassemble them with ease!
 
+> [!IMPORTANT]
+> This package requires the usage of [NDK](https://github.com/nostr-dev-kit/ndk#installation)
+
 ## Install
 
 ``` bash
