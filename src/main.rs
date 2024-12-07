@@ -7,6 +7,8 @@ use std::env;
 use std::fs;
 use std::io::{self, prelude::*, Write};
 
+use chunky_monkey::kinds::{BLOB, CSS, HTML, JS};
+
 pub fn read_stdin() -> Vec<u8> {
     let mut buffer: Vec<u8> = vec![];
 
@@ -17,6 +19,10 @@ pub fn read_stdin() -> Vec<u8> {
 }
 
 fn main() {
+	println!("BLOB={}", BLOB);
+	println!("CSS={}", CSS);
+	println!("HTML={}", HTML);
+	println!("JS={}", JS);
     let app = App::new(env!("CARGO_PKG_NAME"))
         .version(crate_version!())
         .author(format!("\n{}", crate_authors!("\n")).as_str())

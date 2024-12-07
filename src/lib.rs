@@ -3,6 +3,8 @@ use percent_encoding::{percent_decode_str, percent_encode, utf8_percent_encode, 
 use std::fmt;
 use url::Url;
 
+pub mod kinds;
+
 const DEFAULT_MEDIA_TYPE: &'static str = "text/plain";
 const DEFAULT_CHARSET: &'static str = "US-ASCII";
 const TEXTUAL_MEDIA_TYPES: &'static [&str] = &[
