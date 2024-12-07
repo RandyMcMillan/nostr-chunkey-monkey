@@ -6,3 +6,7 @@
 **/*.rs.bk
 
 node_modules/
+
+# Added by cargo
+
+/target
