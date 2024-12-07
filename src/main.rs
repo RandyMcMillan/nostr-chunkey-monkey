@@ -28,8 +28,14 @@ fn main() {
         .author(format!("\n{}", crate_authors!("\n")).as_str())
         .about(crate_description!())
         .arg(
+            Arg::with_name("SECRET")
+                .long("sec")
+                .multiple(false)
+                .takes_value(true)
+                .help("Nostr private key"),
+        )
+        .arg(
             Arg::with_name("CHUNK_SIZE")
-                .short("s")
                 .long("size")
                 .multiple(false)
                 .takes_value(true)
@@ -164,6 +170,10 @@ fn main() {
         std::process::exit(match DataUrl::parse(&input_as_string) {
             Ok(data_url) => {
                 if !stdout_is_a_tty || file_output_set || data_url.is_binary() {
+                    //TODO if event_id from cli
+                    //TODO if event_id from cli
+                    //TODO if event_id from cli
+
                     // Write raw bytes if the output is a file, or if the contents of this data URL has binary format
                     if file_output_set {
                         let mut handle = fs::File::create(output_file_path).unwrap();
@@ -174,7 +184,8 @@ fn main() {
                         handle.write_all(data_url.data()).unwrap();
                     }
                 } else {
-                    // When printing the result directly into the terminal, we have to convert data into UTF-8 (must account for non-US-ASCII/UTF-8 charsets)
+                    // When printing the result directly into the terminal,
+                    // we have to convert data into UTF-8 (must account for non-US-ASCII/UTF-8 charsets)
                     print!("{}", data_url.text());
                 }
                 0
@@ -185,11 +196,13 @@ fn main() {
             }
         });
     } else {
+        //chunk file
         let mut data_url = DataUrl::new();
 
         data_url.set_data(&input);
 
         if app.is_present("base64") {
+            //make base64 default?
             data_url.set_is_base64_encoded(true);
         }
 
