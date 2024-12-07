@@ -1,13 +1,13 @@
 extern crate clap;
 
 use atty::Stream;
+use chunky_monkey::kinds::{BLOB, CSS, HTML, JS};
 use chunky_monkey::DataUrl;
+//use chunky_monkey::*;
 use clap::{crate_authors, crate_description, crate_version, App, Arg};
 use std::env;
 use std::fs;
 use std::io::{self, prelude::*, Write};
-
-use chunky_monkey::kinds::{BLOB, CSS, HTML, JS};
 
 pub fn read_stdin() -> Vec<u8> {
     let mut buffer: Vec<u8> = vec![];
@@ -19,14 +19,22 @@ pub fn read_stdin() -> Vec<u8> {
 }
 
 fn main() {
-	println!("BLOB={}", BLOB);
-	println!("CSS={}", CSS);
-	println!("HTML={}", HTML);
-	println!("JS={}", JS);
+    println!("BLOB={}", BLOB);
+    println!("CSS={}", CSS);
+    println!("HTML={}", HTML);
+    println!("JS={}", JS);
     let app = App::new(env!("CARGO_PKG_NAME"))
         .version(crate_version!())
         .author(format!("\n{}", crate_authors!("\n")).as_str())
         .about(crate_description!())
+        .arg(
+            Arg::with_name("CHUNK_SIZE")
+                .short("s")
+                .long("size")
+                .multiple(false)
+                .takes_value(true)
+                .help("Size of chunks to be sent"),
+        )
         .arg(
             Arg::with_name("base64")
                 .short("b")
@@ -92,6 +100,13 @@ fn main() {
     let stdout_is_a_tty: bool = atty::is(Stream::Stdout);
     let mut file_input_set: bool = app.is_present("INPUT FILE");
     let mut file_output_set: bool = app.is_present("OUTPUT FILE");
+    let chunk_size_set: bool = app.is_present("CHUNK_SIZE");
+    let chunk_size: &str = if chunk_size_set {
+        app.value_of("CHUNK_SIZE").unwrap()
+    } else {
+        &"102400"
+    };
+    println!("CHUNK_SIZE={}", chunk_size);
     let input_file_path: &str = if file_input_set {
         app.value_of("INPUT FILE").unwrap()
     } else {
