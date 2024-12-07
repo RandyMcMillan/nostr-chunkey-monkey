@@ -18,6 +18,7 @@ lint:
 
 install:
 	@cargo install --force --locked --path .
+	@cargo install --force --locked --path . --root .
 .PHONY: install
 
 uninstall:
