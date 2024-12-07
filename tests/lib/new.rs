@@ -7,7 +7,7 @@
 
 #[cfg(test)]
 mod passing {
-    use dataurl::{DataUrl, DataUrlParseError};
+    use chunky_monkey::{DataUrl, DataUrlParseError};
 
     #[test]
     fn must_be_possible_to_create_new_empty_data_url() -> Result<(), DataUrlParseError> {

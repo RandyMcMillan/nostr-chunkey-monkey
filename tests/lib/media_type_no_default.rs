@@ -7,7 +7,7 @@
 
 #[cfg(test)]
 mod passing {
-    use dataurl::{DataUrl, DataUrlParseError};
+    use chunky_monkey::{DataUrl, DataUrlParseError};
 
     #[test]
     fn must_be_none_by_default() -> Result<(), DataUrlParseError> {
@@ -42,7 +42,7 @@ mod passing {
 
 #[cfg(test)]
 mod failing {
-    use dataurl::{DataUrl, DataUrlParseError};
+    use chunky_monkey::{DataUrl, DataUrlParseError};
 
     #[test]
     fn must_fall_back_to_none_if_set_to_empty() -> Result<(), DataUrlParseError> {

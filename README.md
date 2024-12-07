@@ -13,23 +13,23 @@ CLI tool / Rust crate for converting files and text into data URLs and back
 ## Usage (CLI)
 
 ```console
-dataurl "some text"
+chunky_monkey "some text"
 ```
 
 ```console
-dataurl -d 'data:text/html,text<a id%3D"b">ok</a>?a=v#f' > index.html
+chunky_monkey -d 'data:text/html,text<a id%3D"b">ok</a>?a=v#f' > index.html
 ```
 
 ```console
-dataurl -b -i picture.png
+chunky_monkey -b -i picture.png
 ```
 
 ```console
-cat file.txt | dataurl -i - -o - | dataurl -d
+cat file.txt | chunky_monkey -i - -o - | chunky_monkey -d
 ```
 
 ```console
-cat file.png | dataurl
+cat file.png | chunky_monkey
 ```
 
 ### Flags and options
@@ -49,7 +49,7 @@ cat file.png | dataurl
 ## Usage (crate)
 
 ```rust
-use dataurl::DataUrl;
+use chunky_monkey::DataUrl;
 
 let data_url: DataUrl = DataUrl::parse("data:,Hello,%20World!")?;
 

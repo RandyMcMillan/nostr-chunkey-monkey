@@ -7,7 +7,7 @@
 
 #[cfg(test)]
 mod passing {
-    use dataurl::{DataUrl, DataUrlParseError};
+    use chunky_monkey::{DataUrl, DataUrlParseError};
 
     #[test]
     fn must_be_empty_by_default() -> Result<(), DataUrlParseError> {
@@ -111,7 +111,7 @@ mod passing {
 
 #[cfg(test)]
 mod failing {
-    use dataurl::{DataUrl, DataUrlParseError};
+    use chunky_monkey::{DataUrl, DataUrlParseError};
 
     #[test]
     fn must_not_output_default_charset_if_bad_charset_given() -> Result<(), DataUrlParseError> {

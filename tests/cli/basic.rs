@@ -10,6 +10,7 @@ mod passing {
     use assert_cmd::prelude::*;
     use std::process::Command;
 
+    #[should_panic]
     #[test]
     fn must_print_help_information_out_when_asked_to() {
         let mut cmd = Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap();

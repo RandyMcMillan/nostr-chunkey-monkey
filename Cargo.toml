@@ -1,8 +1,8 @@
 [package]
-name = "dataurl"
+name = "chunky-monkey"
 version = "0.1.2"
 authors = [
-    "Sunshine <sunshine@uberspace.net>",
+    "@RandyMcMillan <randymcmillan@protonmail.com>", "Sunshine <sunshine@uberspace.net>",
 ]
 edition = "2018"
 description = "CLI tool and Rust crate for parsing and generating data URLs"
@@ -33,5 +33,5 @@ default = ["cli"]
 cli = ["clap"]
 
 [[bin]]
-name = "dataurl"
+name = "chunky-monkey"
 required-features = ["cli"]

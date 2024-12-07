@@ -7,7 +7,7 @@
 
 #[cfg(test)]
 mod passing {
-    use dataurl::{DataUrl, DataUrlParseError};
+    use chunky_monkey::{DataUrl, DataUrlParseError};
 
     #[test]
     fn must_trim_spaces_around_url() -> Result<(), DataUrlParseError> {
@@ -163,7 +163,7 @@ mod passing {
 
 #[cfg(test)]
 mod failing {
-    use dataurl::{DataUrl, DataUrlParseError};
+    use chunky_monkey::{DataUrl, DataUrlParseError};
 
     #[test]
     fn must_error_out_if_given_empty_string() -> Result<(), DataUrlParseError> {

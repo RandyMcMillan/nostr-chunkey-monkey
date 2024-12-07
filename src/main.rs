@@ -1,8 +1,8 @@
 extern crate clap;
 
 use atty::Stream;
+use chunky_monkey::DataUrl;
 use clap::{crate_authors, crate_description, crate_version, App, Arg};
-use dataurl::DataUrl;
 use std::env;
 use std::fs;
 use std::io::{self, prelude::*, Write};
