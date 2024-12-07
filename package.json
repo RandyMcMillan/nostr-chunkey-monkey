@@ -4,7 +4,7 @@
   "description": "Publish large files to nostr in chunks and reassemble them with ease!",
   "main": "index.ts",
   "scripts": {
-    "test": "test.ts"
+    "tests": "tsc tests.ts"
   },
   "repository": {
     "type": "git",
