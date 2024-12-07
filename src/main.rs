@@ -19,10 +19,10 @@ pub fn read_stdin() -> Vec<u8> {
 }
 
 fn main() {
-    println!("BLOB={}", BLOB);
-    println!("CSS={}", CSS);
-    println!("HTML={}", HTML);
-    println!("JS={}", JS);
+    //println!("BLOB={}", BLOB);
+    //println!("CSS={}", CSS);
+    //println!("HTML={}", HTML);
+    //println!("JS={}", JS);
     let app = App::new(env!("CARGO_PKG_NAME"))
         .version(crate_version!())
         .author(format!("\n{}", crate_authors!("\n")).as_str())
@@ -112,7 +112,7 @@ fn main() {
     } else {
         &"102400"
     };
-    println!("CHUNK_SIZE={}", chunk_size);
+    //println!("CHUNK_SIZE={}", chunk_size);
     let input_file_path: &str = if file_input_set {
         app.value_of("INPUT FILE").unwrap()
     } else {
