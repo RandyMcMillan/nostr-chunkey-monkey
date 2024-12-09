@@ -1,7 +1,7 @@
 extern crate clap;
 
 use atty::Stream;
-use chunky_monkey::kinds::{BLOB, CSS, HTML, JS};
+//use chunky_monkey::kinds::{BLOB, CSS, HTML, JS};
 use chunky_monkey::DataUrl;
 //use chunky_monkey::*;
 use clap::{crate_authors, crate_description, crate_version, App, Arg};
@@ -9,7 +9,7 @@ use std::env;
 use std::fs;
 use std::io::{self, prelude::*, Write};
 
-use bitcoin_hashes::Hash;
+//use bitcoin_hashes::Hash;
 use bitcoin_hashes::Sha256;
 
 pub fn read_stdin() -> Vec<u8> {
@@ -156,7 +156,7 @@ fn main() {
 
     //////////////////////////////////////////////////////////////////////////
 
-    let file_hash: String;
+    let file_hash: Sha256;
     let input: Vec<u8> = if string_input_set {
         app.value_of("INPUT").unwrap().as_bytes().to_vec()
     } else if file_input_set {
@@ -175,8 +175,8 @@ fn main() {
     let mut reader: &[u8] = &input;
     let mut engine = Sha256::engine();
     std::io::copy(&mut reader, &mut engine).unwrap();
-    let _hash = Sha256::from_engine(engine);
-	println!("{:x}", _hash);
+    file_hash = Sha256::from_engine(engine);
+    println!("{:x}", file_hash);
 
     //////////////////////////////////////////////////////////////////////////
 
