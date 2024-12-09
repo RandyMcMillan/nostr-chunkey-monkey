@@ -21,6 +21,13 @@ pub fn read_stdin() -> Vec<u8> {
     }
 }
 
+fn get_file_hash(input: &[u8]) -> Sha256 {
+    let mut reader: &[u8] = &input;
+    let mut engine = Sha256::engine();
+    std::io::copy(&mut reader, &mut engine).unwrap();
+    Sha256::from_engine(engine)
+}
+
 fn main() {
     //println!("BLOB={}", BLOB);
     //println!("CSS={}", CSS);
@@ -156,7 +163,6 @@ fn main() {
 
     //////////////////////////////////////////////////////////////////////////
 
-    let file_hash: Sha256;
     let input: Vec<u8> = if string_input_set {
         app.value_of("INPUT").unwrap().as_bytes().to_vec()
     } else if file_input_set {
@@ -172,10 +178,11 @@ fn main() {
         read_stdin()
     };
 
-    let mut reader: &[u8] = &input;
-    let mut engine = Sha256::engine();
-    std::io::copy(&mut reader, &mut engine).unwrap();
-    file_hash = Sha256::from_engine(engine);
+    let file_hash = get_file_hash(&input);
+    //let mut reader: &[u8] = &input;
+    //let mut engine = Sha256::engine();
+    //std::io::copy(&mut reader, &mut engine).unwrap();
+    //file_hash = Sha256::from_engine(engine);
     println!("{:x}", file_hash);
 
     //////////////////////////////////////////////////////////////////////////
