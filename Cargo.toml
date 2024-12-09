@@ -20,6 +20,7 @@ license = "CC0-1.0"
 [dependencies]
 atty = "0.2.14"
 base64 = "0.13.0"
+bitcoin_hashes = "0.15.0"
 clap = { version = "2.33.3", optional = true } 
 encoding_rs = "0.8.29"
 nostr-sdk = "0.37.0"

@@ -9,6 +9,9 @@ use std::env;
 use std::fs;
 use std::io::{self, prelude::*, Write};
 
+use bitcoin_hashes::Hash;
+use bitcoin_hashes::Sha256;
+
 pub fn read_stdin() -> Vec<u8> {
     let mut buffer: Vec<u8> = vec![];
 
@@ -112,6 +115,13 @@ fn main() {
     } else {
         &"102400"
     };
+    let nostr_secret_set: bool = app.is_present("SECRET");
+    let nostr_secret: &str = if nostr_secret_set {
+        app.value_of("SECRET").unwrap()
+    } else {
+        //empty sha256
+        &"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    };
     //println!("CHUNK_SIZE={}", chunk_size);
     let input_file_path: &str = if file_input_set {
         app.value_of("INPUT FILE").unwrap()
@@ -146,6 +156,7 @@ fn main() {
 
     //////////////////////////////////////////////////////////////////////////
 
+    let file_hash: String;
     let input: Vec<u8> = if string_input_set {
         app.value_of("INPUT").unwrap().as_bytes().to_vec()
     } else if file_input_set {
@@ -160,6 +171,12 @@ fn main() {
         // TODO: make it hang here, waiting on input from STDIN the way GNU's `base64` or `cat` do
         read_stdin()
     };
+
+    let mut reader: &[u8] = &input;
+    let mut engine = Sha256::engine();
+    std::io::copy(&mut reader, &mut engine).unwrap();
+    let _hash = Sha256::from_engine(engine);
+	println!("{:x}", _hash);
 
     //////////////////////////////////////////////////////////////////////////
 
